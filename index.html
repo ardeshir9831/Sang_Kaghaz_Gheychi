@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>سنگ کاغذ قیچی</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(to bottom right, #dfe9f3, #ffffff);
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+    }
+
+    .choices {
+      margin: 30px 0;
+    }
+
+    .choice {
+      font-size: 80px;
+      margin: 0 20px;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .choice:hover {
+      transform: scale(1.2);
+    }
+
+    #result {
+      font-size: 1.8rem;
+      margin-top: 30px;
+      color: #444;
+    }
+
+    .selection {
+      margin-top: 20px;
+      font-size: 1.2rem;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>🎮 بازی سنگ، کاغذ، قیچی</h1>
+
+  <div class="choices">
+    <span class="choice" onclick="play('rock')">🪨</span>
+    <span class="choice" onclick="play('paper')">📄</span>
+    <span class="choice" onclick="play('scissors')">✂️</span>
+  </div>
+
+  <div id="result"></div>
+  <div class="selection" id="selections"></div>
+
+  <script>
+    const choices = ['rock', 'paper', 'scissors'];
+    const emojis = {
+      rock: '🪨',
+      paper: '📄',
+      scissors: '✂️'
+    };
+
+    function play(playerChoice) {
+      const computerChoice = choices[Math.floor(Math.random() * 3)];
+
+      let result = '';
+
+      if (playerChoice === computerChoice) {
+        result = "⚖️ مساوی شد!";
+      } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+      ) {
+        result = "✅ تو بردی!";
+      } else {
+        result = "❌ کامپیوتر برد!";
+      }
+
+      document.getElementById('result').innerText = result;
+      document.getElementById('selections').innerHTML = `
+        تو انتخاب کردی: ${emojis[playerChoice]} | کامپیوتر انتخاب کرد: ${emojis[computerChoice]}
+      `;
+    }
+  </script>
+
+</body>
+</html>
